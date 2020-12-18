@@ -401,13 +401,6 @@
 				return 0
 			if("kudzu")
 				boutput(user, "You take a brief moment to figure out what part of [M]'s head isn't vines.")
-			if("reliquary_soldier")
-				if(barbery_type == "haircut")
-					playsound(M, "sound/items/Scissor.ogg", 100, 1)
-				user.tri_message("[user] waves [his_or_her(user)] [barbery_type == "haircut" ? "scissors" : "razor"] around [M]'s head, snipping at nothing!",\
-											M, "[user] [barbery_type == "haircut" ? "snips" : "cuts"] at something around your head.",\
-									 user, "You wave your [barbery_type == "haircut" ? "scissors" : "razor"] around [M]'s robot cyborg mechanical metal... head?")
-				return 0
 			if("cow")
 				if(barbery_type == "haircut")
 					playsound(M, "sound/items/Scissor.ogg", 100, 1)
@@ -528,8 +521,7 @@
 							M.bioHolder.mobAppearance.customization_third = new_style
 
 		M.set_clothing_icon_dirty() // why the fuck is hair updated in clothing
-		if (M.organHolder?.head)
-			M.organHolder.head.update_icon()
+		M.update_colorful_parts()
 		..()
 
 	onInterrupt()
@@ -629,8 +621,7 @@
 							M.cust_three_state = customization_styles[new_style] || customization_styles_gimmick[new_style]
 							M.bioHolder.mobAppearance.customization_third = new_style
 		M.set_clothing_icon_dirty() // why the fuck is hair updated in clothing
-		if (M.organHolder?.head)
-			M.organHolder.head.update_icon()
+		M.update_colorful_parts()
 		..()
 
 	onInterrupt()
